@@ -13,13 +13,13 @@ struct TitleView: View {
             Image("logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .background(Color.black)
-                .clipShape(Circle())
-                .frame(width: 30, height: 30)
+                .background(Color(.systemTeal))
+                .frame(width: 37, height: 36)
+                .clipShape(Capsule())
                 .opacity(0.85)
                 
             Text("TechShop")
-                .font(.system(size: 26))
+                .font(.system(size: 28))
                 .foregroundColor(Color(.systemTeal))
         }
     }

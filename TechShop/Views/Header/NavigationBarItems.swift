@@ -38,20 +38,23 @@ struct UserDropDownButton: View {
         } else {
             let options = ["Profile", "Logout"]
             
-            Picker(
-                selection: $userSelection,
-                label: Image("profilePic")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(Circle())
-                        .frame(width: 30, height: 30)
-                        .opacity(0.9)
-            ) {
-                ForEach(options, id: \.self) { option in
-                    Text(option)
+            Menu {
+                Picker(
+                    selection: $userSelection,
+                    label: EmptyView()
+                ) {
+                    ForEach(options, id: \.self) { option in
+                        Text(option)
+                    }
                 }
+            } label: {
+                Image("profilePic")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .frame(width: 40, height: 40)
+                    .opacity(0.92)
             }
-            .pickerStyle(MenuPickerStyle())
             .onChange(of: userSelection) { _ in
                 switch(userSelection) {
                 case "Profile":
@@ -77,33 +80,22 @@ struct AdminDropDownButton: View {
     var body: some View {
         let options = ["Users", "Products", "Orders"]
         
-        Picker(
-            selection: $adminSelection,
-            label: ZStack {
-                Image(systemName: "gearshape.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 27, height: 27)
-                    .opacity(0.9)
-                
-                Circle()
-                    .foregroundColor(Color(.systemGray5))
-                    .frame(width: 14, height: 16)
-                
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 14, height: 14)
-                    .padding(.top, 2)
-                    .opacity(0.9)
+        Menu {
+            Picker(
+                selection: $adminSelection,
+                label: EmptyView()
+            ) {
+                ForEach(options, id: \.self) { option in
+                    Text(option)
+                }
             }
-        ) {
-            ForEach(options, id: \.self) { option in
-                Text(option)
-            }
+        } label: {
+            Image("admin")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 36, height: 36)
+                .opacity(0.72)
         }
-        .pickerStyle(MenuPickerStyle())
-        .padding(.trailing, 16)
         .onChange(of: adminSelection) { _ in
             switch(adminSelection) {
             case "Users":
